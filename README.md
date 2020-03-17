@@ -4,6 +4,8 @@
 
 <br>
 
-2 - entrar na pasta desafiobackend abrir o terminal e executar o comando ./mvnw spring-boot:run.
+2 - entrar na pasta desafiobackend abrir o terminal e executar o comando ./mvnw spring-boot:run.<br>
+    caso seja windows substituir ./mvnw por ./mvnw.cmd
+    
 
 
