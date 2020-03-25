@@ -41,7 +41,7 @@ public class HospedeCustomRepositoryImpl implements HospedeCustomRepository {
 		predicates = validarParametros(predicates,nome,telefone,documento);
 		Predicate[] predicatesArray = new Predicate[predicates.size()];
 		predicates.toArray(predicatesArray);
-		return criteriaBuilder.and(predicatesArray);
+		return criteriaBuilder.or(predicatesArray);
 	}
 
 	private List<Predicate> validarParametros(List<Predicate> predicates, String nome, String telefone, String documento) {

@@ -18,7 +18,7 @@ import com.example.desafiobackend.services.dtos.CheckinDTO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/checkin")
+@RequestMapping(value = "api/checkin")
 @RequiredArgsConstructor
 public class CheckinResource {
 	private final CheckinService checkinService;

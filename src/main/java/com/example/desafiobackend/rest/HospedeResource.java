@@ -21,7 +21,7 @@ import com.example.desafiobackend.services.dtos.HospedeDTO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/hospede")
+@RequestMapping(value = "api/hospede")
 @RequiredArgsConstructor
 public class HospedeResource {
 	private final HospedeService hospedeService;
@@ -36,9 +36,9 @@ public class HospedeResource {
 		return hospedeService.findById(id);
 	}
 
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	@RequestMapping(value = "/paginado", method = RequestMethod.GET)
 	public ResponseEntity<Page<HospedeDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+			@RequestParam(value = "linesPerPage", defaultValue = "5") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
 

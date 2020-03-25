@@ -12,4 +12,5 @@ public interface CheckInRepository extends JpaRepository<Checkin, Long> {
 	
 	public List<Checkin>  findByDataSaidaIsNull();
 	
+	
 }

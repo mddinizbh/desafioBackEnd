@@ -10,7 +10,7 @@ services:
     volumes:
       - /home/renatogroffe/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data 
     networks:
-      - postgres
+       - postgres-compose-network
       
   teste-pgadmin-compose:
     image: dpage/pgadmin4

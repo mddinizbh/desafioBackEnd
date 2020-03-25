@@ -36,6 +36,7 @@ public class CheckinServiceImpl implements CheckinService {
 	@Override
 	public List<CheckinDTO> buscarCheckinAtivo() {
 		List<Checkin> result = checkinRepository.findByDataSaidaIsNull();
+		
 		return result.stream().map(obj -> entidadeToDtoComTotal(obj,true)).collect(Collectors.toList());
 	}
 	@Override
