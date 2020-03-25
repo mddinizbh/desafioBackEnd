@@ -97,4 +97,14 @@ public class HospedeServiceImpl implements HospedeService {
 			throw new SemResultadoException(MensagensHospede.BUSCA_SEM_RESULTADO);
 		}
 	}
+
+	@Override
+	public HospedeDTO buscarHospedeDto(HospedeDTO dto) {
+		try {
+			Hospede hospede = hospedeRepository.findOneByOptionalParams(dto.getNome(), dto.getTelefone(), dto.getDocumento());
+			return entidadetoDTO(hospede);
+		}catch (Exception e) {
+			throw new SemResultadoException(MensagensHospede.BUSCA_SEM_RESULTADO);
+		}
+	}
 }

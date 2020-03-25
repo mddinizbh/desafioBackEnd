@@ -18,6 +18,8 @@ public interface HospedeService {
 	
 	public Hospede buscarHospede(HospedeDTO dto);
 	
+	public HospedeDTO buscarHospedeDto(HospedeDTO dto);
+	
 	public Long salvar(HospedeDTO dto);
 	
 	public void deletar(Long id);

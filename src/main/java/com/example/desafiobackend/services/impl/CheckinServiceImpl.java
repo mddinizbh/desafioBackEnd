@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.desafiobackend.entities.Checkin;
@@ -19,6 +20,8 @@ import com.example.desafiobackend.services.CheckinService;
 import com.example.desafiobackend.services.HospedeService;
 import com.example.desafiobackend.services.dtos.CheckinDTO;
 import com.example.desafiobackend.services.dtos.HospedeDTO;
+import com.example.desafiobackend.services.exceptions.SemResultadoException;
+import com.example.desafiobackend.utils.mensagens.MensagensHospede;
 
 import lombok.RequiredArgsConstructor;
 
@@ -92,9 +95,7 @@ public class CheckinServiceImpl implements CheckinService {
 	}
 	@Override
 	public Long salvar(CheckinDTO dto) {
-		Hospede hospede = hospedeService.buscarHospede(dto.getHospede());
 		Checkin checkin = entidadefromDTO(dto);
-		checkin.setHospede(hospede);
 		checkin = checkinRepository.save(checkin);
 		return checkin.getId();
 	}
@@ -114,7 +115,18 @@ public class CheckinServiceImpl implements CheckinService {
 		return new CheckinDTO(entidade.getId(), hospede,dateToString(entidade.getDataEntrada()),dateToString(entidade.getDataSaida()), entidade.getAdicionalVeiculo());
 	}
 	private String dateToString(LocalDateTime data) {
-		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")        																			.withZone(ZoneId.of("UTC"));
-		 return formatter.format(data).toString();
+		if(data!=null) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")        																			.withZone(ZoneId.of("UTC"));
+			return formatter.format(data).toString();
+		}
+		return "";
+	}
+	@Override
+	public CheckinDTO buscarPorId(Long id) {
+		try {
+			return entidadetoDTO(checkinRepository.findById(id).get());
+		}catch (ObjectNotFoundException e) {
+			throw new SemResultadoException(MensagensHospede.BUSCA_SEM_RESULTADO);
+		}
 	}
 }

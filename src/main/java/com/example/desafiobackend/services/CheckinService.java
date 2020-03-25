@@ -14,4 +14,7 @@ public interface CheckinService {
 	
 	public CheckinDTO alterar(CheckinDTO dto);
 	
+	public CheckinDTO buscarPorId(Long id);
+	
+	
 }

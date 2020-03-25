@@ -35,6 +35,11 @@ public class HospedeResource {
 	public HospedeDTO buscarHospede(@PathVariable Long id) {
 		return hospedeService.findById(id);
 	}
+	
+	@RequestMapping(value = "/buscarHospede", method = RequestMethod.POST)
+	public HospedeDTO buscarHospede(@RequestBody HospedeDTO objDto) {
+		return hospedeService.buscarHospedeDto(objDto);
+	}
 
 	@RequestMapping(value = "/paginado", method = RequestMethod.GET)
 	public ResponseEntity<Page<HospedeDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
